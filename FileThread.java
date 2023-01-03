@@ -14,12 +14,7 @@ public class FileThread extends Thread{
 
     public void run()
     {
-        getLines();
-    }
-
-    public void getLines()
-    {
-        System.out.println("Running");
+        System.out.println("Running:" + threadId());
         int numOfLines=0;
         String path=Ex2_1.getPath()+name+".txt"; //check if name of the file contains ".txt"
         try
@@ -29,8 +24,8 @@ public class FileThread extends Thread{
             String line ="";
             while(line!=null)
             {
-               line= br.readLine();
-               numOfLines++;
+                line= br.readLine();
+                numOfLines++;
             }
             numOfLines--; //in the end of the file it reads null context
             br.close();
@@ -42,6 +37,11 @@ public class FileThread extends Thread{
         }
 
         numLines =  numOfLines;
+    }
+
+    public int getLines()
+    {
+        return numLines;
     }
 
     public int getNum()

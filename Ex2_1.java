@@ -7,8 +7,8 @@ public class Ex2_1 {
     // SINCE OUR COMPUTERS USE DIFFERENT OPERATING SYSTEMS THE FIRST PATH IS FOR SHOVAL
     // THE SECOND PATH IS FOR ELI
 
-    //static String path="C:\\\\Users\\\\User\\\\Desktop\\\\Eli\\"; //Check where we need to push the files
-    static String path = "//home//eli//Desktop//github//files//";
+    static String path="C:\\\\Users\\\\User\\\\Desktop\\\\Eli\\"; //Check where we need to push the files
+    //static String path = "//home//eli//Desktop//github//files//";
     public static String[] createTextFiles(int n,int seed,int bound)
     {
         Random rand = new Random(seed);
@@ -105,13 +105,29 @@ public class Ex2_1 {
 
     public int getNumOfLinesThreads(String[] fileNames)
     {
+        FileThread [] threadsArr = new FileThread[fileNames.length];
         int totalNumOfLines = 0;
         for (int i = 0; i <fileNames.length ; i++)
         {
             FileThread ft = new FileThread(fileNames[i]);
-            ft.run();
-            totalNumOfLines += ft.getNum();
+            ft.start();
+            threadsArr[i] = ft;
         }
+        for (int i = 0; i < fileNames.length; i++)
+        {
+            try
+            {
+                threadsArr[i].join();
+                totalNumOfLines += threadsArr[i].getLines();
+            }
+            catch (InterruptedException e)
+            {
+                System.err.println("ERROR");
+                return -1;
+            }
+
+        }
+
         return totalNumOfLines;
     }
 
