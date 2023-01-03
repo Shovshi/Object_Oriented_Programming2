@@ -18,7 +18,6 @@ public class Ex2_1 {
         for (int i = 0; i < n ; i++)
         {
             int lines = rand.nextInt(bound);
-            System.out.println("number : " + lines);
             try
             {
                 File file = new File(path+"file_" +(i+1)+".txt");
@@ -26,7 +25,6 @@ public class Ex2_1 {
                 boolean didCreate = file.createNewFile();
                 if (didCreate)
                 {
-                    System.out.println("file "+(i+1)+ " created");
                     names[i] = "file_"+(i+1);
                     didSetLines = setLines(file.getAbsolutePath(),lines);
                     if(!didSetLines)

@@ -14,7 +14,6 @@ public class FileThread extends Thread{
 
     public void run()
     {
-        System.out.println("Running:" + threadId());
         int numOfLines=0;
         String path=Ex2_1.getPath()+name+".txt"; //check if name of the file contains ".txt"
         try
