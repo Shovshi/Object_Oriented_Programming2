@@ -1,7 +1,9 @@
 import java.util.concurrent.ExecutionException;
 
 public class Main {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException
+    {
+        System.out.println("Shoval was here");
         String names[]= Ex2_1.createTextFiles(10,10,100000);
         int lines= Ex2_1.getNumOfLines(names);
         System.out.println("total: "+lines);
