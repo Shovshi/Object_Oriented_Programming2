@@ -2,7 +2,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        String names[]= Ex2_1.createTextFiles(3,10,100000);
+        String names[]= Ex2_1.createTextFiles(10,10,100000);
         int lines= Ex2_1.getNumOfLines(names);
         System.out.println("total: "+lines);
         for (int i = 0; i < 10; i++) {
