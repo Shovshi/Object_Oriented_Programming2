@@ -101,7 +101,7 @@ public class Ex2_1 {
         return numOfLines;
     }
 
-    public int getNumOfLinesThreads(String[] fileNames)
+    public static int getNumOfLinesThreads(String[] fileNames)
     {
         FileThread [] threadsArr = new FileThread[fileNames.length];
         int totalNumOfLines = 0;
@@ -129,7 +129,7 @@ public class Ex2_1 {
         return totalNumOfLines;
     }
 
-   public int getNumOfLinesThreadPool(String[] fileNames) throws ExecutionException, InterruptedException
+   public static int getNumOfLinesThreadPool(String[] fileNames) throws ExecutionException, InterruptedException
    {
        int totalNumOfLines = 0;
        ExecutorService pool= Executors.newFixedThreadPool(fileNames.length);
