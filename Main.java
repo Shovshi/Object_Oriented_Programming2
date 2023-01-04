@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException
     {
         // we create n amount of tiles bound to maximum 100000 lines
-        String names[]= Ex2_1.createTextFiles(2000,10,500000);
+        String names[]= Ex2_1.createTextFiles(200,10,500000);
 
 
         // measure time takes regularly
