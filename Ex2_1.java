@@ -4,8 +4,8 @@ import java.util.concurrent.*;
 import java.util.random.*;
 public class Ex2_1 {
 
-    // SINCE OUR COMPUTERS USE DIFFERENT OPERATING SYSTEMS THE FIRST PATH IS FOR SHOVAL
-    // THE SECOND PATH IS FOR ELI
+    // SINCE OUR COMPUTERS USE DIFFERENT OPERATING SYSTEMS THE FIRST PATH IS FOR SHOVAL - WINDOWS
+    // THE SECOND PATH IS FOR ELI - UBUNTU
 
     //static String path="C:\\\\Users\\\\User\\\\Desktop\\\\Eli\\"; //Check where we need to push the files
     static String path = "//home//eli//Desktop//github//files//";

@@ -1,14 +1,20 @@
+import java.time.Instant;
 import java.util.concurrent.ExecutionException;
-
+import java.util.Date;
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException
     {
         // we create n amount of tiles bound to maximum 100000 lines
-        String names[]= Ex2_1.createTextFiles(40,10,100000);
+        String names[]= Ex2_1.createTextFiles(200,10,500000);
+
 
         // measure time takes regularly
+        long startTime = System.currentTimeMillis();
+
         int linesRegular = Ex2_1.getNumOfLines(names);
         System.out.println("Regular Total: " + linesRegular);
+
+        //CalculateAndDisplayTime(startTime);
 
         // measure time it takes using a thread for each file
         int linesFromThreads = Ex2_1.getNumOfLinesThreads(names);
@@ -18,4 +24,13 @@ public class Main {
         int linesFromThreadPool = Ex2_1.getNumOfLinesThreadPool(names);
         System.out.println("Thread Pool Total: " + linesFromThreadPool);
     }
+
+    public void CalculateAndDisplayTime(int startMilliSeconds)
+    {
+        long endTime = System.currentTimeMillis();
+        long functionTime = endTime - startMilliSeconds;
+
+
+    }
+
 }
