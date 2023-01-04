@@ -1,7 +1,6 @@
-import java.time.Instant;
+package PartA;
+
 import java.util.concurrent.ExecutionException;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException
