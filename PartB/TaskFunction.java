@@ -1,8 +1,7 @@
 package PartB;
 
 @FunctionalInterface
-public interface TaskFunction {
-
-    interface func{}
-
+public interface TaskFunction<T>
+{
+     T genericFunction(T y);
 }
