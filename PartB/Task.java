@@ -15,15 +15,16 @@ public class Task <T> implements Callable
     }
 
     //constructor
-    public Task(TaskFunction<T> function)
+    public T Test(TaskFunction<T> function, T value)
     {
         this.function = function;
+        return function.genericFunction(value);
     }
 
     @Override
     public T call() throws Exception
     {
-        System.out.println("this is ID");
+        System.out.println("this is ID" );
         returnVal = function.genericFunction(value);
         return returnVal;
 
