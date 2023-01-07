@@ -24,7 +24,6 @@ public class Task<T> implements Callable
     public T call() throws Exception
     {
         return function.call();
-
     }
 
     public static Task createTask(Callable function)
