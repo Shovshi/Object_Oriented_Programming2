@@ -1,29 +1,34 @@
 package PartB;
 
+import java.util.concurrent.Callable;
+
 public class Run
 {
-    public static void main(String[] args)
-    {
-        Task<Integer> obj = new Task<Integer>();
+    public static void main(String[] args) throws Exception {
 
-
-        int result = obj.Test((Integer x) -> x + 1, 5);
-        System.out.println(result);
-
-
-
-
-
-        Task<Integer> t1 = new Task<Integer>();
-        int res = t1.Test((Integer x) -> {
+        Callable t1 = Task.createTask(() -> {
+            int x = 0;
             for (int i = 0; i < 10 ; i++) {
                 System.out.println("this is x:" + x);
                 x = x + i;
             }
 
-            return x;
-        },5);
+            return x;});
 
-        System.out.println(res);
+
+        System.out.println(t1.call());
+
+        Callable t2 = Task.createTask(() ->
+        {
+            double average = 0;
+            for (int i = 0; i < 10; i++) {
+                average+= i;
+            }
+            return average/10;
+        });
+
+        System.out.println(t2.call());
+
     }
 }
+

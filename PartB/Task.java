@@ -2,35 +2,33 @@ package PartB;
 
 import java.util.concurrent.Callable;
 
-public class Task <T> implements Callable
+public class Task<T> implements Callable
 {
     private int typePriority;
     private TaskType taskType;
-    TaskFunction<T> function;
+    Callable<T> function;
     private T value;
     private T returnVal;
-    public Task()
+    private Task(Callable<T> function)
     {
-
+        this.function = function;
     }
 
     //constructor
-    public T Test(TaskFunction<T> function, T value)
-    {
+    public T Test(Callable<T> function, T value) throws Exception {
         this.function = function;
-        return function.genericFunction(value);
+        return function.call();
     }
 
     @Override
     public T call() throws Exception
     {
-        System.out.println("this is ID" );
-        returnVal = function.genericFunction(value);
-        return returnVal;
+        return function.call();
 
     }
-}
 
-  //  public T doSomething(MyFunction<T> function, T value) {
-  //      return function.apply(value);
-  //  }
+    public static Task createTask(Callable function)
+    {
+        return new Task(function);
+    }
+}
