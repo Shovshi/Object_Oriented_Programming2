@@ -7,29 +7,35 @@ public enum TaskType
         @Override
         public String toString(){return "Computational Task";}
     },
-    IO(2){
+    IO(2)
+    {
         @Override
         public String toString(){return "IO-Bound Task";}
     },
-    OTHER(3){
+    OTHER(3)
+    {
         @Override
         public String toString(){return "Unknown Task";}
     };
     private int typePriority;
-    private TaskType(int priority){
+    private TaskType(int priority)
+    {
         if (validatePriority(priority)) typePriority = priority;
         else
             throw new IllegalArgumentException("Priority is not an integer");
     }
-    public void setPriority(int priority){
+    public void setPriority(int priority)
+    {
         if(validatePriority(priority)) this.typePriority = priority;
         else
             throw new IllegalArgumentException("Priority is not an integer");
     }
-    public int getPriorityValue(){
+    public int getPriorityValue()
+    {
         return typePriority;
     }
-    public TaskType getType(){
+    public TaskType getType()
+    {
         return this;
     }
     /**
@@ -37,7 +43,8 @@ public enum TaskType
      * @param priority
      * @return whether the priority is valid or not
      */
-    private static boolean validatePriority(int priority){
+    private static boolean validatePriority(int priority)
+    {
         if (priority < 1 || priority >10) return false;
         return true;
     }
