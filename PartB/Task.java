@@ -3,28 +3,10 @@ package PartB;
 import java.util.Comparator;
 import java.util.concurrent.Callable;
 
-public class Task<T> implements Callable<T> , Comparator<Task<T>>
+public class Task<T> implements Callable<T> , Comparable<Task<T>>
 {
-    // unless set a different priority from the constructor , the default is set to  "OTHER"
     public TaskType taskType;
     Callable<T> function;
-
-    @Override
-    public int compare(Task<T> t1, Task<T> t2)
-    {
-        if(t1.taskType.getPriorityValue() > t2.taskType.getPriorityValue())
-        {   // if the priority of the first Task is greater than the second , we return 1
-            return 1;
-        }
-        else if (t1.taskType.getPriorityValue() == t2.taskType.getPriorityValue())
-        {   // if the priority of the two Tasks are equal we return 0
-            return 0;
-        }
-        else
-        {   // if the priority of the second Task is greater than the first , we return -1
-            return -1;
-        }
-    }
 
     private Task(Callable<T> function)
     {
@@ -37,7 +19,6 @@ public class Task<T> implements Callable<T> , Comparator<Task<T>>
         this.function = function;
         this.taskType.setPriority(type.getPriorityValue());
     }
-
     @Override
     public T call()
     {
@@ -52,7 +33,6 @@ public class Task<T> implements Callable<T> , Comparator<Task<T>>
         }
 
     }
-
     public static Task createTask(Callable function)
     {
         return new Task(function);
@@ -61,5 +41,21 @@ public class Task<T> implements Callable<T> , Comparator<Task<T>>
     public static Task createTask(Callable function, TaskType type)
     {
         return new Task(function , type);
+    }
+    @Override
+    public int compareTo(Task<T> task)
+    {
+        if (this.taskType.getPriorityValue() > task.taskType.getPriorityValue())
+        {
+            return 1;
+        }
+        else if (this.taskType.getPriorityValue() == task.taskType.getPriorityValue())
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
     }
 }

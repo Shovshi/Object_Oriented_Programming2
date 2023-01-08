@@ -15,7 +15,6 @@ public class Run
 
             return x;});
 
-
         System.out.println(t1.call());
 
         Callable t2 = Task.createTask(() ->
@@ -28,7 +27,6 @@ public class Run
         });
 
         System.out.println(t2.call());
-
     }
 
 }
