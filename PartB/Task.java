@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 public class Task<T> implements Callable<T> , Comparator<Task<T>>
 {
     // unless set a different priority from the constructor , the default is set to  "OTHER"
-    private TaskType taskType = TaskType.OTHER;
+    private TaskType taskType;
     Callable<T> function;
 
     @Override
@@ -29,6 +29,7 @@ public class Task<T> implements Callable<T> , Comparator<Task<T>>
     private Task(Callable<T> function)
     {
         this.function = function;
+        taskType.setPriority(3);
     }
 
     private Task(Callable<T> function , TaskType type)
