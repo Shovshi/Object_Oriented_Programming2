@@ -14,10 +14,10 @@ public class Task<T> implements Callable
         this.function = function;
     }
 
-    //constructor
-    public T Test(Callable<T> function, T value) throws Exception {
+    private Task(Callable<T> function , TaskType type)
+    {
         this.function = function;
-        return function.call();
+        this.taskType.setPriority(type.getPriorityValue());
     }
 
     @Override
@@ -29,5 +29,10 @@ public class Task<T> implements Callable
     public static Task createTask(Callable function)
     {
         return new Task(function);
+    }
+
+    public static Task createTask(Callable function, TaskType type)
+    {
+        return new Task(function , type);
     }
 }
