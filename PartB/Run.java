@@ -4,7 +4,8 @@ import java.util.concurrent.Callable;
 
 public class Run
 {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception
+    {
 
         Callable t1 = Task.createTask(() -> {
             int x = 0;

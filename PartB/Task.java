@@ -11,13 +11,13 @@ public class Task<T> implements Callable<T> , Comparable<Task<T>>
     private Task(Callable<T> function)
     {
         this.function = function;
-        taskType.setPriority(3);
+        taskType = taskType.OTHER;
     }
 
     private Task(Callable<T> function , TaskType type)
     {
         this.function = function;
-        this.taskType.setPriority(type.getPriorityValue());
+        this.taskType = type;
     }
     @Override
     public T call()
