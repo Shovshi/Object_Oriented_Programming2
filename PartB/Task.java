@@ -1,14 +1,30 @@
 package PartB;
 
+import java.util.Comparator;
 import java.util.concurrent.Callable;
 
-public class Task<T> implements Callable
+public class Task<T> implements Callable<T> , Comparator<Task<T>>
 {
-    private int typePriority;
     private TaskType taskType;
     Callable<T> function;
-    private T value;
-    private T returnVal;
+
+    @Override
+    public int compare(Task<T> t1, Task<T> t2)
+    {
+        if(t1.taskType.getPriorityValue() > t2.taskType.getPriorityValue())
+        {   // if the priority of the first Task is greater than the second , we return 1
+            return 1;
+        }
+        else if (t1.taskType.getPriorityValue() == t2.taskType.getPriorityValue())
+        {   // if the priority of the two Tasks are equal we return 0
+            return 0;
+        }
+        else
+        {   // if the priority of the second Task is greater than the first , we return -1
+            return -1;
+        }
+    }
+
     private Task(Callable<T> function)
     {
         this.function = function;
