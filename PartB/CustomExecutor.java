@@ -48,18 +48,11 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
         {
             if (priorityArray[i] > 0)
             {
-                maxPriority = i;
-                break;
+                 return maxPriority = i;
             }
         }
-
-        if(maxPriority == 0)
-        {
-            System.out.println("THE QUEUE IS EMPTY");
-            return 0;
-        }
-
-        return maxPriority;
+        System.out.println("The Queue is empty");
+        return 0;
     }
     @Override
     protected void afterExecute(Runnable r, Throwable t)
