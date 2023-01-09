@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.util.concurrent.*;
 import java.util.logging.Logger;
 
+import static java.lang.Thread.sleep;
+
 public class Tests {
     private static java.util.logging.Logger LoggerFactory;
     public static final Logger logger = LoggerFactory.getLogger(String.valueOf(Tests.class));
@@ -23,7 +25,8 @@ public class Tests {
         Future<Integer> sumTask = customExecutor.submit(task);
         final int sum;
         try {
-            sum = sumTask.get(1, TimeUnit.MILLISECONDS);
+
+            sum = sumTask.get(200, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             throw new RuntimeException(e);
         }

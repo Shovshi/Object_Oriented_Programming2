@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
-public class Task<T> extends FutureTask implements Callable<T> , Comparable<Task<T>>
+public class Task<T> extends FutureTask<T> implements Callable<T> , Comparable<Task<T>>
 {
     public TaskType taskType;
     Callable<T> function;
