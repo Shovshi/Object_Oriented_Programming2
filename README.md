@@ -20,8 +20,8 @@ This class implements Callable Interface and implements one main method : the ca
 ## Comparison Of Times 
 In this section we will compare the times of each method and draw conclusions about them.
 After running our program , we got the following order in terms of speeds:
-1. The fastest methos was the one implements the ThreadPool.
-2. The second method was the one implements the Threads.
+1. The fastest method was the one implemented by the ThreadPool.
+2. The second method was the one implemented by the Threads.
 3. The slowest method was the regular one.
 
 ## Conclusions
