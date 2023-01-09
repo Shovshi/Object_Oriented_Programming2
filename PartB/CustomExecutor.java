@@ -1,8 +1,5 @@
 package PartB;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.concurrent.*;
 
 public class CustomExecutor<T> extends ThreadPoolExecutor
@@ -21,8 +18,6 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
                 300, TimeUnit.MILLISECONDS, new PriorityBlockingQueue<>(Runtime.getRuntime().availableProcessors()/2,
                     (t1 , t2 ) -> ((Task) t1).compareTo((Task)t2)));
     }
-
-
     public Future<T> submit (Task task)
     {
         priorityArray[task.taskType.getPriorityValue()]++;
@@ -60,8 +55,14 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
         super.shutdown();
     }
     @Override
-    protected void afterExecute(Runnable r, Throwable t)
+    protected void beforeExecute(Thread t, Runnable r)
     {
-        
+        priorityArray[((Task)r).taskType.getPriorityValue()]--;
+    }
+    @Override
+    protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable)
+    {
+        TaskType type = TaskType.OTHER;
+        return Task.createTask(callable , type);
     }
 }
