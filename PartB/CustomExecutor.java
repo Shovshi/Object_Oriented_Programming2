@@ -3,7 +3,8 @@ package PartB;
 import java.util.Comparator;
 import java.util.concurrent.*;
 
-public class CustomExecutor<T> extends ThreadPoolExecutor {
+public class CustomExecutor<T> extends ThreadPoolExecutor
+{
     int [] priorityArray = new int [10];
     //Runtime runtime = Runtime.getRuntime();
     //int minNumOfProcessors = runtime.availableProcessors()/2;
@@ -16,7 +17,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor {
     {
         super(Runtime.getRuntime().availableProcessors() / 2, Runtime.getRuntime().availableProcessors() - 1,
                 300, TimeUnit.MILLISECONDS, new PriorityBlockingQueue<>(Runtime.getRuntime().availableProcessors()/2,
-                        Comparator.comparing(t -> ((Task) t))));
+                        Comparator.comparing(t -> ((TaskAdapt) t))));
     }
     public Future<T> submit (Task task)
     {
@@ -43,7 +44,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor {
         {
             if (priorityArray[i] > 0)
             {
-                 return maxPriority = i - 1;
+                 return maxPriority = i;
             }
         }
         System.out.println("The Queue is empty");
@@ -57,7 +58,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor {
     @Override
     protected void beforeExecute(Thread t, Runnable r)
     {
-        TaskAdapt<T> taskAdapt = TaskAdapt.class.cast(r);
+        TaskAdapt<T> taskAdapt = (TaskAdapt<T>) (r);
         Callable<T> callable = taskAdapt.getCallable();
         Task task = (Task) callable;
 

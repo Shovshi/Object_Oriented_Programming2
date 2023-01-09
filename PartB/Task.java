@@ -4,21 +4,19 @@ import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
-public class Task<T> extends FutureTask<T> implements Callable<T> , Comparable<Task<T>>
+public class Task<T> implements Callable<T> , Comparable<Task<T>>
 {
     public TaskType taskType;
     Callable<T> function;
 
     private Task(Callable<T> function)
     {
-        super(function);
         this.function = function;
         taskType = taskType.OTHER;
     }
 
     private Task(Callable<T> function , TaskType type)
     {
-        super(function);
         this.function = function;
         this.taskType = type;
     }
