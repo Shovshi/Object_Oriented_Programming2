@@ -44,8 +44,4 @@ public class FileThread extends Thread{
         return numLines;
     }
 
-    public int getNum()
-    {
-        return numLines;
-    }
 }
