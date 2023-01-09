@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
-public class Task<T> implements Callable<T> , Comparable<Task<T>>
+public class Task<T> implements Callable<T>
 {
     public TaskType taskType;
     Callable<T> function;
@@ -20,7 +20,6 @@ public class Task<T> implements Callable<T> , Comparable<Task<T>>
         this.function = function;
         this.taskType = type;
     }
-    @Override
     public T call()
     {
         try
@@ -29,7 +28,7 @@ public class Task<T> implements Callable<T> , Comparable<Task<T>>
         }
         catch (Exception e)
         {
-            System.err.println("ERROR");
+            System.err.println("Error");
             return null;
         }
 
@@ -43,20 +42,5 @@ public class Task<T> implements Callable<T> , Comparable<Task<T>>
     {
         return new Task(function , type);
     }
-    @Override
-    public int compareTo(Task<T> task)
-    {
-        if (this.taskType.getPriorityValue() > task.taskType.getPriorityValue())
-        {
-            return 1;
-        }
-        else if (this.taskType.getPriorityValue() == task.taskType.getPriorityValue())
-        {
-            return 0;
-        }
-        else
-        {
-            return -1;
-        }
-    }
+
 }

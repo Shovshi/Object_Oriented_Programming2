@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 
 public class CustomExecutor<T> extends ThreadPoolExecutor
 {
-    int [] priorityArray = new int [10];
+    int [] priorityArray = new int [11];
     //Runtime runtime = Runtime.getRuntime();
     //int minNumOfProcessors = runtime.availableProcessors()/2;
     //int maxNumOfProcessors = runtime.availableProcessors()-1;
@@ -40,7 +40,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     public int getCurrentMax()
     {
         int maxPriority = 0;
-        for (int i = 9; i >= 0; i--)
+        for (int i = 10; i >= 0; i--)
         {
             if (priorityArray[i] > 0)
             {
@@ -59,10 +59,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     protected void beforeExecute(Thread t, Runnable r)
     {
         TaskAdapt<T> taskAdapt = (TaskAdapt<T>) (r);
-        Callable<T> callable = taskAdapt.getCallable();
-        Task task = (Task) callable;
-
-        priorityArray[task.taskType.getPriorityValue()]--;
+        priorityArray[taskAdapt.getPriority()]--;
     }
     @Override
     protected <T> RunnableFuture newTaskFor( Callable<T> callable)
