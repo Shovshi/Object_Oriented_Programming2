@@ -79,8 +79,6 @@ public class Tests {
         try {
             totalPrice = priceTask.get();
             reversed = reverseTask.get();
-            reversed2 = reverseTask2.get();
-            reversed3 = reverseTask3.get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
