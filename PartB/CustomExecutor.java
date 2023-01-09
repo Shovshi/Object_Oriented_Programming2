@@ -8,12 +8,12 @@ import java.util.concurrent.*;
 public class CustomExecutor<T> extends ThreadPoolExecutor
 {
     int [] priorityArray = new int [10];
-    Runtime runtime = Runtime.getRuntime();
-    int minNumOfProcessors = runtime.availableProcessors()/2;
-    int maxNumOfProcessors = runtime.availableProcessors()-1;
-    PriorityBlockingQueue<Runnable> blockingQueue = new PriorityBlockingQueue<>(minNumOfProcessors,
-            (t1 , t2 ) -> ((Task) t1).compareTo((Task)t2));
-    ThreadPoolExecutor pool = new ThreadPoolExecutor(minNumOfProcessors,maxNumOfProcessors,300,TimeUnit.MILLISECONDS,blockingQueue);
+    //Runtime runtime = Runtime.getRuntime();
+    //int minNumOfProcessors = runtime.availableProcessors()/2;
+    //int maxNumOfProcessors = runtime.availableProcessors()-1;
+    //PriorityBlockingQueue<Runnable> blockingQueue = new PriorityBlockingQueue<>(minNumOfProcessors,
+    //        (t1 , t2 ) -> ((Task) t1).compareTo((Task)t2));
+    //ThreadPoolExecutor pool = new ThreadPoolExecutor(minNumOfProcessors,maxNumOfProcessors,300,TimeUnit.MILLISECONDS,blockingQueue);
 
     public CustomExecutor()
     {
@@ -26,7 +26,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     public Future<T> submit (Task task)
     {
         priorityArray[task.taskType.getPriorityValue()]++;
-        return pool.submit(task);
+        return super.submit(task);
     }
 
     public Future<T> submit (Callable task, TaskType taskType)
