@@ -26,7 +26,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     public Future<T> submit (Task task)
     {
         priorityArray[task.taskType.getPriorityValue()]++;
-        return super.submit(task);
+        return super.submit((Callable<T>) task);
     }
 
     public Future<T> submit (Callable task, TaskType taskType)
@@ -54,9 +54,14 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
         System.out.println("The Queue is empty");
         return 0;
     }
+
+    public void gracefullyTerminated()
+    {
+        super.shutdown();
+    }
     @Override
     protected void afterExecute(Runnable r, Throwable t)
     {
-        priorityArray[((Task)r).taskType.getPriorityValue()]--;
+        
     }
 }
