@@ -15,7 +15,7 @@ This class extends Thread class and implements Two methods:
 2. The getLines method which will return the number of lines in the current file.
 
 ## FileCallable Class
-This class implements Callable class and implements one main method : the call method which will also calculate the number of lines in the file and return this value.
+This class implements Callable Interface and implements one main method : the call method which will also calculate the number of lines in the file and return this value.
 
 ## Comparison Of Times 
 In this section we will compare the times of each method and draw conclusions about them.
@@ -30,6 +30,36 @@ One of the reasons for this could be that in a single threaded application, only
 
 ## Diagram Class
 
-
+![DiagramClass](https://user-images.githubusercontent.com/117938983/211315814-9700642f-1904-4245-b0fa-8277765316d8.png)
 
 # Part B 
+This part purpose is to create a new type that represents an asynchronous task with priority and a new ThreadPool type that supports tasks with priority.
+we will use Three classes which we will detail later to accomplish this goal.
+
+## TaskType Class
+This is an enum class describes the type of task (computational/access to O/I/unknown) and its priority based on the value
+The number of the task type.
+
+## Task Class
+This class represent an operation that can be run asynchronously and can return a value of any type (generic).
+This class implements Callable and Comparable Interfaces , and also implements few methods :
+1. Two private constructors: one takes only a Callable object "function" and sets a default value for the pirority, and the other one takes a Callable object           "function" and also a taskType.
+2. The call method: by this method we perform the task and return the relevant value.
+3. Two public constructors called "createTask": one takes only a Callable object "function", and the other one takes a Callable object "function" and also a taskType.
+4. CompareTo function: takes a Task and compare it by priority value with the current Task.
+
+## CustomExecutor Class
+This class represents a new type of ThreadPool that supports a queue of tasks with priority.
+This class extends ThreadPoolExecutor class, and also implements a few main methods :
+1. Constructor which access the base class to build a "ThreadPool".
+2. Three different methods to submit a task: 
+* One which takes a Task and uses the base class to submit.
+* The second one takes a Callable object Task and also a TaskType and uses the first submit method to submit.
+* The third one takes a Callable object Task and uses the first submit method to submit.
+3. getCurrentMax method which return the highest priority of a found task now in line.
+4. gracefullyTerminated method which will terminate the pool.
+     
+## Diagram Class
+
+![DiagramClass_PartB](https://user-images.githubusercontent.com/117938983/211328284-fdf3ca64-3ad8-4818-a32f-9d6117d66f30.png)
+
