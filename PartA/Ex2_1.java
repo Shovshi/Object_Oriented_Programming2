@@ -10,7 +10,7 @@ public class Ex2_1 {
     // THE SECOND PATH IS FOR ELI - UBUNTU
 
     //static String path="C:\\\\Users\\\\User\\\\Desktop\\\\Eli\\"; //Check where we need to push the files
-    static String path = "//home//eli//Desktop//github//files//";
+    //static String path = "//home//eli//Desktop//github//files//";
     public static String[] createTextFiles(int n,int seed,int bound)
     {
         Random rand = new Random(seed);
@@ -22,7 +22,7 @@ public class Ex2_1 {
             int lines = rand.nextInt(bound);
             try
             {
-                File file = new File(path+"file_" +(i+1)+".txt");
+                File file = new File("file_" +(i+1)+".txt");
 
                 boolean didCreate = file.createNewFile();
                 if (didCreate)
@@ -82,7 +82,7 @@ public class Ex2_1 {
             cnt = 0;
             try
             {
-                FileReader fr = new FileReader(path+fileNames[i]+".txt");
+                FileReader fr = new FileReader(fileNames[i]+".txt");
                 BufferedReader br = new BufferedReader(fr);
                 String line = "";
                 while(line!=null)
@@ -160,8 +160,5 @@ public class Ex2_1 {
        return totalNumOfLines;
    }
 
-    public static String getPath()
-    {
-        return path;
-    }
+
 }

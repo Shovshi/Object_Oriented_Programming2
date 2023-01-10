@@ -16,7 +16,7 @@ public class FileCallable implements Callable {
     public Object call() throws Exception
     {
         int numOfLines=0;
-        String path=Ex2_1.getPath()+name+".txt"; //check if name of the file contains ".txt"
+        String path=name+".txt"; //check if name of the file contains ".txt"
 
         try
         {
