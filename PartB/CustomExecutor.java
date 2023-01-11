@@ -35,6 +35,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
      */
     public Future<T> submit (Task<T> task)
     {
+        task.hasBeenCalled = true;
         priorityArray[task.taskType.getPriorityValue()]++;
         return super.submit(task);
     }
@@ -116,5 +117,10 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     protected <T> RunnableFuture newTaskFor( Callable<T> callable)
     {
         return new TaskAdapt<T>(callable);
+    }
+
+    public String toString()
+    {
+        return super.toString();
     }
 }

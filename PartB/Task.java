@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
  */
 public class Task<T> implements Callable<T> , Comparable<Task>
 {
+    public boolean hasBeenCalled = false;
     public TaskType taskType;
     Callable<T> function;
     /**
@@ -43,6 +44,7 @@ public class Task<T> implements Callable<T> , Comparable<Task>
     {
         try
         {
+            hasBeenCalled = true;
             return function.call();
         }
         catch (Exception e)
@@ -89,5 +91,21 @@ public class Task<T> implements Callable<T> , Comparable<Task>
             return 0;
         }
         return -1;
+    }
+
+    /**
+     * To string function
+     * @return - the task priority and if it has been called yet or not
+     */
+    public String toString()
+    {
+        if(hasBeenCalled)
+        {
+            return "The task priority is: " + taskType.getPriorityValue() + ", The task has been called";
+        }
+        else
+        {
+            return "The task priority is: " + taskType.getPriorityValue() + ", The task hasn't been called yet";
+        }
     }
 }
