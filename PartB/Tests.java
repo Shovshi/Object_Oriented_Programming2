@@ -124,4 +124,60 @@ public class Tests
         logger.info(()-> "Current maximum priority = " + customExecutor.getCurrentMax());
         customExecutor.gracefullyTerminate();
     }
+
+    /**
+     * in this test , we test to make sure our custom executor can handle different return types
+     */
+    @Test
+    public void testGeneric()
+    {
+        CustomExecutor customExecutor = new CustomExecutor();
+        Callable<Integer> c1 = Task.createTask(() ->
+        {
+            sleep(1000);
+            return 1;
+        },TaskType.OTHER);
+        Callable<String> c2 = Task.createTask(() ->
+        {
+            sleep(1000);
+            return " I love shoval ";
+        },TaskType.OTHER);
+        Callable<Double> c3 = Task.createTask(() ->
+        {
+            sleep(1000);
+            return 1.0;
+        },TaskType.OTHER);
+
+        Future<Integer> int1 = customExecutor.submit(c1);
+        Future<Double> double1 = customExecutor.submit(c3);
+        Future<String> string1 = customExecutor.submit(c2);
+
+        logger.info(()-> {
+            try {
+                return "Successfully returned integer: " + int1.get();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        logger.info(()-> {
+            try {
+                return "Successfully returned double: " + double1.get();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        logger.info(()-> {
+            try {
+                return "Successfully returned string: " + string1.get();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
 }
