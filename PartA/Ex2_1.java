@@ -166,10 +166,8 @@ public class Ex2_1
      * number of lines in all files, and eventually we shut down the pool.
      * @param fileNames
      * @return integer number
-     * @throws ExecutionException
-     * @throws InterruptedException
      */
-   public static int getNumOfLinesThreadPool(String[] fileNames) throws ExecutionException, InterruptedException
+   public static int getNumOfLinesThreadPool(String[] fileNames)
    {
        int totalNumOfLines = 0;
        ExecutorService pool= Executors.newFixedThreadPool(fileNames.length);
@@ -188,7 +186,7 @@ public class Ex2_1
            {
                totalNumOfLines += futureArr[i].get();
            }
-           catch (InterruptedException e)
+           catch (InterruptedException | ExecutionException e )
            {
                System.err.println("Error");
            }
