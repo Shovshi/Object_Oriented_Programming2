@@ -4,13 +4,21 @@ import java.io.*;
 import java.util.Random;
 import java.util.concurrent.*;
 
+/**
+ * This class includes all the methods required in our task.
+ */
+
 public class Ex2_1 {
 
-    // SINCE OUR COMPUTERS USE DIFFERENT OPERATING SYSTEMS THE FIRST PATH IS FOR SHOVAL - WINDOWS
-    // THE SECOND PATH IS FOR ELI - UBUNTU
 
-    //static String path="C:\\\\Users\\\\User\\\\Desktop\\\\Eli\\"; //Check where we need to push the files
-    //static String path = "//home//eli//Desktop//github//files//";
+    /**
+     * This method creates n text files considering seed and bound to calculate the range of a possible number of lines in a certain file ,
+     * and returns an array including the names of the files.
+     * @param n
+     * @param seed
+     * @param bound
+     * @return String array
+     */
     public static String[] createTextFiles(int n,int seed,int bound)
     {
         Random rand = new Random(seed);
@@ -52,6 +60,12 @@ public class Ex2_1 {
 
     }
 
+    /**
+     * This method writes to a given file a certain number of lines and returns true if it worked.
+     * @param path
+     * @param lines
+     * @return boolean value
+     */
     public static boolean setLines (String path, int lines)
     {
         try
@@ -73,6 +87,12 @@ public class Ex2_1 {
         return true;
     }
 
+    /**
+     * This method gets an array of file names and calculate total number of lines in all the files
+     * by reading each line of each file and add it to the total number.
+     * @param fileNames
+     * @return integer number
+     */
     public static int getNumOfLines(String[] fileNames)
     {
         int numOfLines = 0;
@@ -103,6 +123,14 @@ public class Ex2_1 {
         return numOfLines;
     }
 
+    /**
+     * This method calculate number of total lines in all files using Threads.
+     * At first, we start each tread which related to each file respectively, and then we put them in a treads array
+     * to maintain the thread idea. Then we get the number of lines in each file and add it to the total number
+     * and eventually returns this number.
+     * @param fileNames
+     * @return integer number
+     */
     public static int getNumOfLinesThreads(String[] fileNames)
     {
         FileThread [] threadsArr = new FileThread[fileNames.length];
@@ -131,6 +159,15 @@ public class Ex2_1 {
         return totalNumOfLines;
     }
 
+
+    /**
+     * In this method we use ThreadPool and an array of future objects, so we can approach their "get" method and calculate the total
+     * number of lines in all files, and eventually we shut down the pool.
+     * @param fileNames
+     * @return integer number
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
    public static int getNumOfLinesThreadPool(String[] fileNames) throws ExecutionException, InterruptedException
    {
        int totalNumOfLines = 0;
