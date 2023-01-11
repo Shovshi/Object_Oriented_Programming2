@@ -34,7 +34,12 @@ One of the reasons for this could be that in a single threaded application, only
 
 # Part B 
 This part purpose is to create a new type that represents an asynchronous task with priority and a new ThreadPool type that supports tasks with priority.
-we will use Three classes which we will detail later to accomplish this goal.
+We will use Three classes which we will detail later to accomplish this goal.
+We will also use the "Adapter" design pattern that we will extend later.
+
+## Adapter Design Pattern
+The adapter pattern convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.
+In our project we will use this design pattern to solve a problem of when we want to use the Task ,that implements Callable, as a runnable object so we use the TaskAdapt class.
 
 ## TaskType Class
 This is an enum class describes the type of task (computational/access to O/I/unknown) and its priority based on the value
@@ -58,8 +63,15 @@ This class extends ThreadPoolExecutor class, and also implements a few main meth
 * The third one takes a Callable object Task and uses the first submit method to submit.
 3. getCurrentMax method which return the highest priority of a found task now in line.
 4. gracefullyTerminated method which will terminate the pool.
+
+## TaskAdapt 
+This class extends FutureTask and implements Comparable interface and support a few main methods:
+1. Two constructors with a difference that one gets Callable object and the other one gets Task object.
+2. getPirority method - this method returns the current piority of the current task.
+3. getCallable method - this method returns the specific function that belongs to the Task.
+4. compareTo method - this method compares two TaskAdapt by their TaskType piorirty.
      
 ## Diagram Class
 
-![DiagramClass_PartB](https://user-images.githubusercontent.com/117938983/211328284-fdf3ca64-3ad8-4818-a32f-9d6117d66f30.png)
+![partB diagram](https://user-images.githubusercontent.com/117938983/211844878-e1c53918-c0d1-40cd-a667-6580848419a5.png)
 
