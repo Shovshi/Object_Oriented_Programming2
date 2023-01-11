@@ -8,7 +8,8 @@ import java.util.concurrent.*;
  * This class includes all the methods required in our task.
  */
 
-public class Ex2_1 {
+public class Ex2_1
+{
 
 
     /**
@@ -196,6 +197,4 @@ public class Ex2_1 {
        pool.shutdown();
        return totalNumOfLines;
    }
-
-
 }

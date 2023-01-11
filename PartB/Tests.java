@@ -10,7 +10,7 @@ import static java.lang.Thread.sleep;
 
 public class Tests
 {
-    private static java.util.logging.Logger LoggerFactory;
+    private static java.util .logging.Logger LoggerFactory;
     public static final Logger logger = LoggerFactory.getLogger(String.valueOf(Tests.class));
 
     @Test
