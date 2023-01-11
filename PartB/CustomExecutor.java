@@ -87,7 +87,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
      * This function simply calls shutdown since the specifics needed for "gracefullyTerminated"
      * shutdown already has
      */
-    public void gracefullyTerminated()
+    public void gracefullyTerminate()
     {
         super.shutdown();
     }
@@ -119,6 +119,9 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
         return new TaskAdapt<T>(callable);
     }
 
+    /**
+     * @return - we return the default to string of the ThreadPoolExecutor
+     */
     public String toString()
     {
         return super.toString();
