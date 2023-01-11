@@ -5,15 +5,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
+
+/**
+ * This class implements Callable Interface and use it to calculate number of lines in a specific file.
+ */
 public class FileCallable implements Callable
 {
-
     public String name;
+
+    /**
+     * This is a constructor that gets a name of a file and initialize it.
+     * @param name
+     */
     public FileCallable(String name)
     {
         this.name=name;
     }
 
+    /**
+     * This method calculate number of lines in a specific file.
+     * @return Object type that contains the number of lines.
+     * @throws Exception
+     */
     public Object call() throws Exception
     {
         int numOfLines=0;
