@@ -25,7 +25,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     {
         super(Runtime.getRuntime().availableProcessors() / 2, Runtime.getRuntime().availableProcessors() - 1,
                 300, TimeUnit.MILLISECONDS, new PriorityBlockingQueue<>(Runtime.getRuntime().availableProcessors()/2,
-                        Comparator.comparing(t -> ((TaskAdapt<T>) t))));
+                        (t1,t2) -> ((TaskAdapt)t1).compareTo((TaskAdapt)t2)));
     }
 
     /**
@@ -61,8 +61,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
      */
     public Future<T> submit (Callable call)
     {
-        Callable task1 = Task.createTask(call);
-        return submit((Task)task1);
+        return submit((Task)call);
     }
 
     /**

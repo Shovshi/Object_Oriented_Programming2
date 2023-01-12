@@ -95,27 +95,27 @@ public class Tests
         {
             sleep(1000);
             return 1;
-        },TaskType.OTHER);
+        },TaskType.IO);
         Callable<Integer> c2 = Task.createTask(() ->
         {
             sleep(1000);
             return 1;
-        },TaskType.OTHER);
+        },TaskType.IO);
         Callable<Integer> c3 = Task.createTask(() ->
         {
             sleep(1000);
             return 1;
-        },TaskType.OTHER);
+        },TaskType.COMPUTATIONAL);
         Callable<Integer> c4 = Task.createTask(() ->
         {
             sleep(1000);
             return 1;
-        },TaskType.OTHER);
+        },TaskType.IO);
         Callable<Integer> c5 = Task.createTask(() ->
         {
             sleep(1000);
             return 1;
-        },TaskType.OTHER);
+        },TaskType.COMPUTATIONAL);
         customExecutor.submit(c1);
         customExecutor.submit(c2);
         customExecutor.submit(c3);
