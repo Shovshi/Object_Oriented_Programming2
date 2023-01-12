@@ -110,6 +110,15 @@ public class Task<T> implements Callable<T> , Comparable<Task>
     }
 
     /**
+     * all tasks with same priority will have the same hashcode
+     */
+    @Override
+    public int hashCode()
+    {
+        return taskType.getPriorityValue();
+    }
+
+    /**
      * if the other task object has the same priority as this one , and the same status as to if its been run or not
      * then we will return one meaning they are equal , otherwise zero
      */
