@@ -73,5 +73,4 @@ This class extends FutureTask and implements Comparable interface and support a 
      
 ## Diagram Class
 
-![partB diagram](https://user-images.githubusercontent.com/117938983/211844878-e1c53918-c0d1-40cd-a667-6580848419a5.png)
-
+![partB](https://user-images.githubusercontent.com/117938983/212135394-c86a3d12-c75b-4679-9ef9-f16ccd3d4acd.png)
