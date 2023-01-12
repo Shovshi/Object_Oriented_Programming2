@@ -53,21 +53,21 @@ public class TaskAdapt<T> extends FutureTask<T> implements Comparable<TaskAdapt<
      * This method overrides the method from Comparable , we compare two objects of type "TaskAdapt" based
      * on their task's priority
      * @param t the object of type TaskAdapt that we compare
-     * @return - We return 0 if the two TaskAdapt have same task priority , 1 if the TaskAdapt we call from is greater
-     * -1 if the TaskAdapt we call from is less
+     * @return - We return 0 if the two TaskAdapt have same task priority , -1 if the TaskAdapt we call from is greater
+     * 1 if the TaskAdapt we call from is less
      */
     @Override
     public int compareTo(TaskAdapt t)
     {
 
         if (task.taskType.getPriorityValue() > t.task.taskType.getPriorityValue()) {
-            return 1;
+            return -1;
         }
         if (task.taskType.getPriorityValue() == t.task.taskType.getPriorityValue()) {
             return 0;
         }
 
-        return -1;
+        return 1;
     }
 }
 
