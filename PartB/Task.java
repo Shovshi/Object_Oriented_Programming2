@@ -108,4 +108,29 @@ public class Task<T> implements Callable<T> , Comparable<Task>
             return "The task priority is: " + taskType.getPriorityValue() + ", The task hasn't been called yet";
         }
     }
+
+    /**
+     * if the other task object has the same priority as this one , and the same status as to if its been run or not
+     * then we will return one meaning they are equal , otherwise zero
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+        {
+            return true;
+        }
+        if(obj == null || this.getClass() != obj.getClass())
+        {
+            return false;
+        }
+
+        Task otherTask = (Task<?>) obj;
+        if(otherTask.taskType.getPriorityValue() == this.taskType.getPriorityValue()
+        && otherTask.hasBeenCalled == this.hasBeenCalled)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

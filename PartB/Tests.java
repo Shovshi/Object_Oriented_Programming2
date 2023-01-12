@@ -153,20 +153,31 @@ public class Tests
         Future<String> string1 = customExecutor.submit(c2);
 
         logger.info(()-> {
-            try {
+            try
+            {
                 return "Successfully returned integer: " + int1.get();
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
                 throw new RuntimeException(e);
-            } catch (ExecutionException e) {
+            }
+            catch (ExecutionException e)
+            {
                 throw new RuntimeException(e);
             }
         });
-        logger.info(()-> {
-            try {
+        logger.info(()->
+        {
+            try
+            {
                 return "Successfully returned double: " + double1.get();
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
                 throw new RuntimeException(e);
-            } catch (ExecutionException e) {
+            }
+            catch (ExecutionException e)
+            {
                 throw new RuntimeException(e);
             }
         });

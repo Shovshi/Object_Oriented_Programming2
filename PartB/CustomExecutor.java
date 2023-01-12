@@ -84,12 +84,21 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     }
 
     /**
-     * This function simply calls shutdown since the specifics needed for "gracefullyTerminated"
-     * shutdown already has
+     * This function will shutdown the pool then give three seconds till we terminate all the threads
+     * that were still running
      */
     public void gracefullyTerminate()
     {
         super.shutdown();
+
+        try
+        {
+            super.awaitTermination(3,TimeUnit.SECONDS);
+        }
+        catch (InterruptedException e)
+        {
+            System.err.println("Thread Interrupted");
+        }
     }
 
     /**
